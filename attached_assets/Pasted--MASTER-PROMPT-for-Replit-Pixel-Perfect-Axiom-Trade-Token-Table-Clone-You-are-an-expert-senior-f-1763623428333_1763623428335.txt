@@ -1,0 +1,155 @@
+✅ MASTER PROMPT for Replit — Pixel-Perfect Axiom Trade Token Table Clone
+
+You are an expert senior frontend engineer specializing in Next.js, TypeScript, Tailwind, and performance-critical UIs.
+Your task is to build a pixel-perfect replica of Axiom Trade’s Token Discovery Table:
+👉 https://axiom.trade/pulse
+
+🎯 PROJECT REQUIREMENTS (follow exactly)
+🔷 UI + Feature Requirements
+
+Build a pixel-perfect replica of the Token Discovery Table with:
+
+All token columns:
+
+New pairs
+
+Final Stretch
+
+Migrated
+
+UI interactions:
+
+Popover
+
+Tooltip
+
+Modal
+
+Sorting (ASC/DESC)
+
+Hover effects
+
+Click actions
+
+Real-time price updates using a mock WebSocket with:
+
+Smooth color transitions (red/green flash animation)
+
+Loading states:
+
+Skeleton loaders
+
+Shimmer effect
+
+Progressive loading
+
+Error boundaries
+
+Pixel-perfect accuracy ≤ 2px difference, validated through a visual-regression tool
+
+Fully responsive
+
+🔷 TECH STACK (must use exactly)
+
+Next.js 14 (App Router)
+
+TypeScript — strict mode
+
+Tailwind CSS
+
+Redux Toolkit for complex global state
+
+React Query for all data fetching
+
+Radix UI / Headless UI / shadcn/ui for accessible primitives
+
+Framer Motion allowed for micro-interactions
+
+WebSocket mock using setInterval + EventSource pattern
+
+🔷 ARCHITECTURE REQUIREMENTS
+
+Follow Atomic Architecture:
+
+/components/atoms
+
+/components/molecules
+
+/components/organisms
+
+/hooks
+
+/store
+
+/utils
+
+/services (WebSocket simulation + API)
+
+/types (strict typing)
+
+All logic must be clean, reusable, and DRY.
+
+🔷 PERFORMANCE REQUIREMENTS
+
+Memoized components (React.memo, useMemo, useCallback)
+
+Prevent layout shift (use fixed widths, skeletons)
+
+< 100ms interaction time
+
+No unnecessary re-renders
+
+Virtualize rows if performance drops (bonus)
+
+🔷 CODE QUALITY
+
+Full TypeScript interfaces
+
+Error handling with fallbacks
+
+JSDoc comments for complex hooks
+
+Inline documentation for reducers + WebSocket logic
+
+🔷 DELIVERABLE OUTPUT FORMAT
+
+Generate the following:
+
+1. Folder structure
+2. Complete Next.js project code including:
+
+Page components
+
+Table UI components
+
+Sorting logic
+
+Tooltip / Popover / Modal
+
+WebSocket mock
+
+Real-time color transitions
+
+Redux store + slices
+
+React Query setup
+
+Skeleton loaders
+
+Error boundary
+
+Utilities
+
+Tailwind config
+
+Types
+
+3. A “How to Run” guide
+4. A “Pixel-Perfect Tweaking Guide”
+5. Lighthouse score tips to reach ≥90
+💬 Final Instruction
+
+Do NOT generate explanations unless necessary.
+Start by generating the complete project code with correct file names and directory structure.
+Match the UI of https://axiom.trade/pulse
+ exactly.
