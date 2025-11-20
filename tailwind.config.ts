@@ -11,7 +11,6 @@ export default {
         sm: ".1875rem", /* 3px */
       },
       colors: {
-        // Flat / base colors (regular buttons)
         background: "hsl(var(--background) / <alpha-value>)",
         foreground: "hsl(var(--foreground) / <alpha-value>)",
         border: "hsl(var(--border) / <alpha-value>)",
@@ -81,6 +80,10 @@ export default {
           busy: "rgb(239 68 68)",
           offline: "rgb(156 163 175)",
         },
+        bullish: "hsl(var(--bullish) / <alpha-value>)",
+        bearish: "hsl(var(--bearish) / <alpha-value>)",
+        warning: "hsl(var(--warning) / <alpha-value>)",
+        quickbuy: "hsl(var(--quickbuy) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
@@ -96,10 +99,25 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        "price-flash-green": {
+          "0%": { backgroundColor: "rgba(16, 185, 129, 0.2)" },
+          "100%": { backgroundColor: "transparent" },
+        },
+        "price-flash-red": {
+          "0%": { backgroundColor: "rgba(239, 68, 68, 0.2)" },
+          "100%": { backgroundColor: "transparent" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        shimmer: "shimmer 2s linear infinite",
+        "price-flash-green": "price-flash-green 500ms ease-out",
+        "price-flash-red": "price-flash-red 500ms ease-out",
       },
     },
   },
