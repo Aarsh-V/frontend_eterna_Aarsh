@@ -10,7 +10,13 @@ import {
 import type { Token } from "@shared/schema";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setSortConfig, setSelectedToken } from "@/store/pulseSlice";
-import { formatMarketCap, formatPrice, formatAge, formatPercentage, truncateAddress } from "@/lib/formatters";
+import {
+  formatMarketCap,
+  formatPrice,
+  formatAge,
+  formatPercentage,
+  truncateAddress,
+} from "@/lib/formatters";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
@@ -26,11 +32,12 @@ export function TokenTable({ tokens }: TokenTableProps) {
   const sortConfig = useAppSelector((state) => state.pulse.sortConfig);
   const [quickBuyToken, setQuickBuyToken] = useState<Token | null>(null);
 
+  /** Columns definition */
   const columns = useMemo<ColumnDef<Token>[]>(
     () => [
       {
-        id: 'token',
-        accessorKey: 'symbol',
+        id: "token",
+        accessorKey: "symbol",
         header: () => <div className="text-left">Token</div>,
         cell: ({ row }) => (
           <div className="flex items-center gap-3" data-testid={`cell-token-${row.original.id}`}>
@@ -47,16 +54,20 @@ export function TokenTable({ tokens }: TokenTableProps) {
               </div>
             )}
             <div>
-              <div className="font-bold" data-testid={`text-symbol-${row.original.id}`}>{row.original.symbol}</div>
-              <div className="text-xs text-muted-foreground" data-testid={`text-name-${row.original.id}`}>{row.original.name}</div>
+              <div className="font-bold" data-testid={`text-symbol-${row.original.id}`}>
+                {row.original.symbol}
+              </div>
+              <div className="text-xs text-muted-foreground" data-testid={`text-name-${row.original.id}`}>
+                {row.original.name}
+              </div>
             </div>
           </div>
         ),
         size: 200,
       },
       {
-        id: 'contractAddress',
-        accessorKey: 'contractAddress',
+        id: "contractAddress",
+        accessorKey: "contractAddress",
         header: () => <div className="text-left">CA</div>,
         cell: ({ row }) => (
           <Tooltip>
@@ -76,8 +87,8 @@ export function TokenTable({ tokens }: TokenTableProps) {
         size: 120,
       },
       {
-        id: 'age',
-        accessorKey: 'age',
+        id: "age",
+        accessorKey: "age",
         header: ({ column }) => (
           <button
             className="flex items-center gap-1 hover:text-foreground transition-colors"
@@ -85,7 +96,13 @@ export function TokenTable({ tokens }: TokenTableProps) {
             data-testid="header-age"
           >
             Age
-            {column.getIsSorted() === 'asc' ? <ArrowUp className="h-3 w-3" /> : column.getIsSorted() === 'desc' ? <ArrowDown className="h-3 w-3" /> : <ArrowUpDown className="h-3 w-3" />}
+            {column.getIsSorted() === "asc" ? (
+              <ArrowUp className="h-3 w-3" />
+            ) : column.getIsSorted() === "desc" ? (
+              <ArrowDown className="h-3 w-3" />
+            ) : (
+              <ArrowUpDown className="h-3 w-3" />
+            )}
           </button>
         ),
         cell: ({ row }) => (
@@ -96,8 +113,8 @@ export function TokenTable({ tokens }: TokenTableProps) {
         size: 80,
       },
       {
-        id: 'marketCap',
-        accessorKey: 'marketCap',
+        id: "marketCap",
+        accessorKey: "marketCap",
         header: ({ column }) => (
           <button
             className="flex items-center gap-1 hover:text-foreground transition-colors"
@@ -105,7 +122,13 @@ export function TokenTable({ tokens }: TokenTableProps) {
             data-testid="header-marketcap"
           >
             Market Cap
-            {column.getIsSorted() === 'asc' ? <ArrowUp className="h-3 w-3" /> : column.getIsSorted() === 'desc' ? <ArrowDown className="h-3 w-3" /> : <ArrowUpDown className="h-3 w-3" />}
+            {column.getIsSorted() === "asc" ? (
+              <ArrowUp className="h-3 w-3" />
+            ) : column.getIsSorted() === "desc" ? (
+              <ArrowDown className="h-3 w-3" />
+            ) : (
+              <ArrowUpDown className="h-3 w-3" />
+            )}
           </button>
         ),
         cell: ({ row }) => (
@@ -116,8 +139,8 @@ export function TokenTable({ tokens }: TokenTableProps) {
         size: 120,
       },
       {
-        id: 'liquidity',
-        accessorKey: 'liquidity',
+        id: "liquidity",
+        accessorKey: "liquidity",
         header: ({ column }) => (
           <button
             className="flex items-center gap-1 hover:text-foreground transition-colors"
@@ -125,7 +148,13 @@ export function TokenTable({ tokens }: TokenTableProps) {
             data-testid="header-liquidity"
           >
             Liquidity
-            {column.getIsSorted() === 'asc' ? <ArrowUp className="h-3 w-3" /> : column.getIsSorted() === 'desc' ? <ArrowDown className="h-3 w-3" /> : <ArrowUpDown className="h-3 w-3" />}
+            {column.getIsSorted() === "asc" ? (
+              <ArrowUp className="h-3 w-3" />
+            ) : column.getIsSorted() === "desc" ? (
+              <ArrowDown className="h-3 w-3" />
+            ) : (
+              <ArrowUpDown className="h-3 w-3" />
+            )}
           </button>
         ),
         cell: ({ row }) => (
@@ -136,8 +165,8 @@ export function TokenTable({ tokens }: TokenTableProps) {
         size: 120,
       },
       {
-        id: 'volume24h',
-        accessorKey: 'volume24h',
+        id: "volume24h",
+        accessorKey: "volume24h",
         header: ({ column }) => (
           <button
             className="flex items-center gap-1 hover:text-foreground transition-colors"
@@ -145,7 +174,13 @@ export function TokenTable({ tokens }: TokenTableProps) {
             data-testid="header-volume"
           >
             Volume 24h
-            {column.getIsSorted() === 'asc' ? <ArrowUp className="h-3 w-3" /> : column.getIsSorted() === 'desc' ? <ArrowDown className="h-3 w-3" /> : <ArrowUpDown className="h-3 w-3" />}
+            {column.getIsSorted() === "asc" ? (
+              <ArrowUp className="h-3 w-3" />
+            ) : column.getIsSorted() === "desc" ? (
+              <ArrowDown className="h-3 w-3" />
+            ) : (
+              <ArrowUpDown className="h-3 w-3" />
+            )}
           </button>
         ),
         cell: ({ row }) => (
@@ -156,8 +191,8 @@ export function TokenTable({ tokens }: TokenTableProps) {
         size: 120,
       },
       {
-        id: 'price',
-        accessorKey: 'price',
+        id: "price",
+        accessorKey: "price",
         header: ({ column }) => (
           <button
             className="flex items-center gap-1 hover:text-foreground transition-colors"
@@ -165,7 +200,13 @@ export function TokenTable({ tokens }: TokenTableProps) {
             data-testid="header-price"
           >
             Price
-            {column.getIsSorted() === 'asc' ? <ArrowUp className="h-3 w-3" /> : column.getIsSorted() === 'desc' ? <ArrowDown className="h-3 w-3" /> : <ArrowUpDown className="h-3 w-3" />}
+            {column.getIsSorted() === "asc" ? (
+              <ArrowUp className="h-3 w-3" />
+            ) : column.getIsSorted() === "desc" ? (
+              <ArrowDown className="h-3 w-3" />
+            ) : (
+              <ArrowUpDown className="h-3 w-3" />
+            )}
           </button>
         ),
         cell: ({ row }) => (
@@ -176,8 +217,8 @@ export function TokenTable({ tokens }: TokenTableProps) {
         size: 120,
       },
       {
-        id: 'priceChange24h',
-        accessorKey: 'priceChange24h',
+        id: "priceChange24h",
+        accessorKey: "priceChange24h",
         header: ({ column }) => (
           <button
             className="flex items-center gap-1 hover:text-foreground transition-colors"
@@ -185,12 +226,18 @@ export function TokenTable({ tokens }: TokenTableProps) {
             data-testid="header-price-change"
           >
             24h %
-            {column.getIsSorted() === 'asc' ? <ArrowUp className="h-3 w-3" /> : column.getIsSorted() === 'desc' ? <ArrowDown className="h-3 w-3" /> : <ArrowUpDown className="h-3 w-3" />}
+            {column.getIsSorted() === "asc" ? (
+              <ArrowUp className="h-3 w-3" />
+            ) : column.getIsSorted() === "desc" ? (
+              <ArrowDown className="h-3 w-3" />
+            ) : (
+              <ArrowUpDown className="h-3 w-3" />
+            )}
           </button>
         ),
         cell: ({ row }) => (
           <span
-            className={`font-bold ${row.original.priceChange24h > 0 ? 'text-bullish' : 'text-bearish'}`}
+            className={`font-bold ${row.original.priceChange24h > 0 ? "text-bullish" : "text-bearish"}`}
             data-testid={`text-price-change-${row.original.id}`}
           >
             {formatPercentage(row.original.priceChange24h)}
@@ -199,8 +246,8 @@ export function TokenTable({ tokens }: TokenTableProps) {
         size: 100,
       },
       {
-        id: 'holderCount',
-        accessorKey: 'holderCount',
+        id: "holderCount",
+        accessorKey: "holderCount",
         header: ({ column }) => (
           <button
             className="flex items-center gap-1 hover:text-foreground transition-colors"
@@ -208,7 +255,13 @@ export function TokenTable({ tokens }: TokenTableProps) {
             data-testid="header-holders"
           >
             Holders
-            {column.getIsSorted() === 'asc' ? <ArrowUp className="h-3 w-3" /> : column.getIsSorted() === 'desc' ? <ArrowDown className="h-3 w-3" /> : <ArrowUpDown className="h-3 w-3" />}
+            {column.getIsSorted() === "asc" ? (
+              <ArrowUp className="h-3 w-3" />
+            ) : column.getIsSorted() === "desc" ? (
+              <ArrowDown className="h-3 w-3" />
+            ) : (
+              <ArrowUpDown className="h-3 w-3" />
+            )}
           </button>
         ),
         cell: ({ row }) => (
@@ -219,55 +272,7 @@ export function TokenTable({ tokens }: TokenTableProps) {
         size: 100,
       },
       {
-        id: 'topHolderPercentage',
-        accessorKey: 'topHolderPercentage',
-        header: () => <div className="text-left">Top Holder %</div>,
-        cell: ({ row }) => (
-          <span
-            className={row.original.topHolderPercentage > 30 ? 'text-warning font-medium' : ''}
-            data-testid={`text-top-holder-${row.original.id}`}
-          >
-            {row.original.topHolderPercentage.toFixed(1)}%
-          </span>
-        ),
-        size: 120,
-      },
-      {
-        id: 'snipersPercentage',
-        accessorKey: 'snipersPercentage',
-        header: () => <div className="text-left">Snipers %</div>,
-        cell: ({ row }) => (
-          <span
-            className={row.original.snipersPercentage > 20 ? 'text-warning font-medium' : ''}
-            data-testid={`text-snipers-${row.original.id}`}
-          >
-            {row.original.snipersPercentage.toFixed(1)}%
-          </span>
-        ),
-        size: 100,
-      },
-      {
-        id: 'txCount',
-        accessorKey: 'txCount',
-        header: ({ column }) => (
-          <button
-            className="flex items-center gap-1 hover:text-foreground transition-colors"
-            onClick={() => column.toggleSorting()}
-            data-testid="header-tx-count"
-          >
-            TX Count
-            {column.getIsSorted() === 'asc' ? <ArrowUp className="h-3 w-3" /> : column.getIsSorted() === 'desc' ? <ArrowDown className="h-3 w-3" /> : <ArrowUpDown className="h-3 w-3" />}
-          </button>
-        ),
-        cell: ({ row }) => (
-          <span className="text-foreground/90" data-testid={`text-tx-count-${row.original.id}`}>
-            {row.original.txCount.toLocaleString()}
-          </span>
-        ),
-        size: 100,
-      },
-      {
-        id: 'quickBuy',
+        id: "quickBuy",
         header: () => <div className="text-center">Action</div>,
         cell: () => null,
         size: 80,
@@ -276,15 +281,13 @@ export function TokenTable({ tokens }: TokenTableProps) {
     []
   );
 
+  /** Sorting state from Redux */
   const sortingFromRedux = useMemo<SortingState>(() => {
     if (sortConfig.column && sortConfig.direction) {
-      return [{
-        id: sortConfig.column,
-        desc: sortConfig.direction === 'desc',
-      }];
+      return [{ id: sortConfig.column, desc: sortConfig.direction === "desc" }];
     }
     return [];
-  }, [sortConfig.column, sortConfig.direction]);
+  }, [sortConfig]);
 
   const [sorting, setSorting] = useState<SortingState>(sortingFromRedux);
 
@@ -292,21 +295,27 @@ export function TokenTable({ tokens }: TokenTableProps) {
     setSorting(sortingFromRedux);
   }, [sortingFromRedux, tokens]);
 
-  const handleSortingChange = useCallback((updater: any) => {
-    setSorting((old) => {
-      const newSorting = typeof updater === 'function' ? updater(old) : updater;
-      if (newSorting.length > 0) {
-        dispatch(setSortConfig({
-          column: newSorting[0].id,
-          direction: newSorting[0].desc ? 'desc' : 'asc',
-        }));
-      } else {
-        dispatch(setSortConfig({ column: null, direction: null }));
-      }
-      return newSorting;
-    });
-  }, [dispatch]);
+  const handleSortingChange = useCallback(
+    (updater: SortingState | ((old: SortingState) => SortingState)) => {
+      setSorting((old) => {
+        const newSorting = typeof updater === "function" ? updater(old) : updater;
+        if (newSorting.length > 0) {
+          dispatch(
+            setSortConfig({
+              column: newSorting[0].id,
+              direction: newSorting[0].desc ? "desc" : "asc",
+            })
+          );
+        } else {
+          dispatch(setSortConfig({ column: null, direction: null }));
+        }
+        return newSorting;
+      });
+    },
+    [dispatch]
+  );
 
+  /** Table instance */
   const table = useReactTable({
     data: tokens,
     columns,
@@ -316,13 +325,8 @@ export function TokenTable({ tokens }: TokenTableProps) {
     getSortedRowModel: getSortedRowModel(),
   });
 
-  const handleQuickBuy = useCallback((token: Token) => {
-    setQuickBuyToken(token);
-  }, []);
-
-  const handleRowClick = useCallback((token: Token) => {
-    dispatch(setSelectedToken(token));
-  }, [dispatch]);
+  const handleQuickBuy = useCallback((token: Token) => setQuickBuyToken(token), []);
+  const handleRowClick = useCallback((token: Token) => dispatch(setSelectedToken(token)), [dispatch]);
 
   return (
     <>
@@ -340,9 +344,7 @@ export function TokenTable({ tokens }: TokenTableProps) {
                       minWidth: header.column.getSize(),
                     }}
                   >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
+                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                   </th>
                 ))}
               </tr>
@@ -356,11 +358,8 @@ export function TokenTable({ tokens }: TokenTableProps) {
         </table>
       </div>
 
-      <QuickBuyModal
-        token={quickBuyToken}
-        open={!!quickBuyToken}
-        onClose={() => setQuickBuyToken(null)}
-      />
+      <QuickBuyModal token={quickBuyToken} open={!!quickBuyToken} onClose={() => setQuickBuyToken(null)} />
     </>
   );
 }
+

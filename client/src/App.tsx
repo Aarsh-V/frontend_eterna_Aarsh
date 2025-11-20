@@ -1,3 +1,4 @@
+import React from "react";
 import { Switch, Route } from "wouter";
 import { Provider } from "react-redux";
 import { store } from "./store";
